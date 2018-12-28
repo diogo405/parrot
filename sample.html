@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Parrot</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+		<style>
+			body { 
+				background: limegreen; 
+				font-family: Helvetica, serif;
+			}
+			img {
+				margin: 5% auto;
+				display: block;
+				max-width: 400px;
+			}
+			input {
+				width: 400px;
+				height: 50px;
+				margin: 30px auto 0 auto;
+				border: 2px solid black;
+				display: block;
+				box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, 0.5);
+				font-size: 30px;
+				padding: 10px;
+				box-sizing: border-box;
+			}
+			.parrot-suggestions {
+				background: white;
+				width: 400px;
+				margin: auto;
+				border: 2px solid black;
+				box-sizing: border-box;
+				padding: 10px;
+			}
+			.parrot-suggestion {
+				margin-top: 10px;
+				cursor: pointer;
+				color: grey;
+			}
+			.parrot-suggestion:first-child {
+				margin-top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="parrot.png">
+		<input class="js-parrot" type="email" name="email" placeholder="e.g. joe@gmail.com">
+
+		<script src="parrot.js"></script>
+		<script>
+			new Parrot();
+		</script>
+	</body>
+</html>
