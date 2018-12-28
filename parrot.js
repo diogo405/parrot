@@ -24,6 +24,9 @@ class Parrot {
 
 	bindInput() {
 		this.input.addEventListener('keyup', () => {
+			
+			this.clearSuggestions();
+
 			let email = this.input.value;
 			let indexOfAt = email.indexOf("@");
 			if (indexOfAt == -1) return;
@@ -31,7 +34,6 @@ class Parrot {
 			let substringAt = email.substring(indexOfAt + 1)
 			if (substringAt.length == 0) return;
 
-			this.clearSuggestions();
 
 			let emailDomain = email.substring(indexOfAt + 1);
 			let domainsFound = this.config.domains.filter(domain => domain.startsWith(emailDomain));
