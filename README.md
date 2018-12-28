@@ -14,10 +14,10 @@ An email autocomplete for mobile
 ```
 <html>
   <body>
-  	.
-  	.
-  	.
-  	<input class="js-parrot" name="customerEmail" type="email">
+    .
+    .
+    .
+    <input class="js-parrot" name="customerEmail" type="email">
     .
     .
     .
