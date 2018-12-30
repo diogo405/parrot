@@ -1,3 +1,9 @@
+/**
+ * Parrot
+ * An email autocomplete for mobile
+ * 
+ * Author: Diogo Goncalves
+ */
 class Parrot {
 	
 	constructor(options) {
