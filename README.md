@@ -46,6 +46,9 @@ this.default = {
     "icloud.com",
     "msn.com",
   ],
+  onSelect: function(suggestion) { 
+    console.log(`Parrot > suggestion selected: ${suggestion.outerHTML}`); 
+  }
 };	
 ```
 
@@ -54,7 +57,10 @@ You can override that passing a JSON object as a param:
 ```
 new Parrot({
   inputSelector: 'input[name="email"]',
-  domains: ["gmail.com", "yahoo.com", "yahoo.com.au"]
+  domains: ["gmail.com", "yahoo.com", "yahoo.com.au"],
+  onSelect: function() {
+    document.dispatchEvent(new Event("email-suggestion-selected"));
+  }
 })
 ```
 
