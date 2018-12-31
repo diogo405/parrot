@@ -20,6 +20,7 @@ class Parrot {
 				"icloud.com",
 				"msn.com",
 			],
+			onSelect: function(suggestion) { console.log(`Parrot > suggestion selected: ${suggestion.outerHTML}`); }
 		};	
 
 		this.config = Object.assign({}, this.default, this.options);
@@ -29,26 +30,34 @@ class Parrot {
 	get input() { return document.querySelector(this.config.inputSelector); }
 
 	bindInput() {
-		this.input.addEventListener('keyup', () => {
-			
-			this.clearSuggestions();
-
-			let email = this.input.value;
-			let indexOfAt = email.indexOf("@");
-			if (indexOfAt == -1) return;
-
-			let substringAt = email.substring(indexOfAt + 1)
-			if (substringAt.length == 0) return;
-
-
-			let emailDomain = email.substring(indexOfAt + 1);
-			let domainsFound = this.config.domains.filter(domain => domain.startsWith(emailDomain));
-			if (domainsFound.length == 0) return;
-
-			let emailUsername = email.substring(0, indexOfAt);
-			let suggestions = domainsFound.map(domain => `${emailUsername}@${domain}`);
-			this.showSuggestions(suggestions);
+		this.input.addEventListener('keyup', () => { this.handleInput() });
+		this.input.addEventListener('focus', () => { this.handleInput() });
+		this.input.addEventListener('blur', () => {	
+			// So the blur happens after the click :/
+			setTimeout(() => {
+				this.clearSuggestions(); 
+			}, 100);
 		});
+	}
+
+	handleInput() {
+		this.clearSuggestions();
+
+		let email = this.input.value;
+		let indexOfAt = email.indexOf("@");
+		if (indexOfAt == -1) return;
+
+		let substringAt = email.substring(indexOfAt + 1)
+		if (substringAt.length == 0) return;
+
+
+		let emailDomain = email.substring(indexOfAt + 1);
+		let domainsFound = this.config.domains.filter(domain => domain.startsWith(emailDomain));
+		if (domainsFound.length == 0) return;
+
+		let emailUsername = email.substring(0, indexOfAt);
+		let suggestions = domainsFound.map(domain => `${emailUsername}@${domain}`);
+		this.showSuggestions(suggestions);
 	}
 
 	clearSuggestions() {
@@ -67,7 +76,8 @@ class Parrot {
 			let suggestionElement = document.createElement('div');
 			suggestionElement.className = 'parrot-suggestion';
 			suggestionElement.onclick = () => { 
-				this.input.value = suggestion 
+				this.input.value = suggestion;
+				this.config.onSelect(suggestionElement);
 				this.clearSuggestions();
 			};
 			suggestionElement.textContent = suggestion;
