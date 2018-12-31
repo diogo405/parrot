@@ -31,6 +31,12 @@ class Parrot {
 	get input() { return document.querySelector(this.config.inputSelector); }
 
 	bindInput() {
+
+		if (!this.input) {
+			console.log(`Parrot > cannot find input with selector '${this.config.inputSelector}'`);
+			return;
+		}
+
 		this.input.addEventListener('keyup', () => { this.handleInput() });
 		this.input.addEventListener('focus', () => { this.handleInput() });
 		this.input.addEventListener('blur', () => {	
