@@ -1,6 +1,7 @@
 /**
  * Parrot
  * An email autocomplete for mobile
+ * https://github.com/diogo405/parrot
  * 
  * Author: Diogo Goncalves
  */
