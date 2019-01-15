@@ -57,7 +57,6 @@ class Parrot {
 		let substringAt = email.substring(indexOfAt + 1)
 		if (substringAt.length == 0) return;
 
-
 		let emailDomain = email.substring(indexOfAt + 1);
 		let domainsFound = this.config.domains.filter(domain => domain.startsWith(emailDomain));
 		if (domainsFound.length == 0) return;
